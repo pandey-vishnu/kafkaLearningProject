@@ -20,9 +20,10 @@ public class ProducerDemoWIthCallback {
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // Create the producer
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
+        for (int i=0; i <10 ; i++) {
         //Record to send
         ProducerRecord<String, String> record =
-                new ProducerRecord<String, String>("first_topic", "Hum honge kamyaab");
+                new ProducerRecord<String, String>("first_topic", "Hello World" + Integer.toString(i));
 
 
         //send data
@@ -40,7 +41,8 @@ public class ProducerDemoWIthCallback {
             else { logger.error("Errror While Producing", e);
         }
                 }});
-//flush data
+}
+        //flush data
         producer.flush();
         //flush and close the producer
         producer.close();
